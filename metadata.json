@@ -1,0 +1,6 @@
+{
+  "name": "CINEMIND - SIM & Website Himpunan Film",
+  "description": "Sistem Informasi Manajemen dan Website Publik Himpunan Mahasiswa Cinemind dengan etalase karya film, warta pers, generator surat resmi berstandar tata kelola, dan kas digital.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

@@ -1,0 +1,67 @@
+@import "tailwindcss";
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+@layer base {
+  :root {
+    --font-heading: 'Oswald', sans-serif;
+    --font-body: 'Inter', sans-serif;
+  }
+
+  body {
+    transition: background-color 0.3s ease, color 0.3s ease;
+  }
+}
+
+.font-display {
+  font-family: 'Oswald', sans-serif;
+  letter-spacing: 0.03em;
+}
+
+.font-body {
+  font-family: 'Inter', sans-serif;
+}
+
+/* Custom hard brutalist shadow per PRD (X:2, Y:2, Blur:0, 10% black opacity) */
+.shadow-hard {
+  box-shadow: 2px 2px 0px rgba(0, 0, 0, 0.12);
+}
+
+.shadow-hard-dark {
+  box-shadow: 2px 2px 0px rgba(0, 0, 0, 0.5);
+}
+
+.shadow-hard-red {
+  box-shadow: 2px 2px 0px #E50914;
+}
+
+.shadow-hard-white {
+  box-shadow: 2px 2px 0px #ffffff;
+}
+
+/* High contrast focus ring as per PRD */
+.focus-cinema:focus-visible {
+  outline: 2px solid #3B82F6;
+  outline-offset: 1px;
+}
+
+/* Print styles for official letter printing */
+@media print {
+  body {
+    background: white !important;
+    color: black !important;
+  }
+  .no-print {
+    display: none !important;
+  }
+  .print-only {
+    display: block !important;
+  }
+  .letter-paper {
+    box-shadow: none !important;
+    border: none !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    width: 100% !important;
+  }
+}

@@ -1,0 +1,137 @@
+{
+  "entities": {
+    "FinanceTransaction": {
+      "title": "FinanceTransaction",
+      "description": "Pencatatan kas organisasi (debit/kredit)",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "transactionDate": { "type": "string" },
+        "type": { "type": "string", "enum": ["in", "out"] },
+        "amount": { "type": "number" },
+        "category": { "type": "string" },
+        "description": { "type": "string" },
+        "recordedBy": { "type": "string" },
+        "receiptNote": { "type": "string" }
+      },
+      "required": ["transactionDate", "type", "amount", "category", "description", "recordedBy"]
+    },
+    "Letter": {
+      "title": "Letter",
+      "description": "Arsip surat resmi organisasi",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "letterNumber": { "type": "string" },
+        "sequenceNumber": { "type": "number" },
+        "classificationCode": { "type": "string" },
+        "recipient": { "type": "string" },
+        "recipientAddress": { "type": "string" },
+        "subject": { "type": "string" },
+        "letterDate": { "type": "string" },
+        "content": { "type": "string" },
+        "signerName": { "type": "string" },
+        "signerRole": { "type": "string" },
+        "signerNim": { "type": "string" },
+        "status": { "type": "string", "enum": ["Diterbitkan", "Draft", "Diarsipkan"] },
+        "createdAt": { "type": "string" }
+      },
+      "required": ["letterNumber", "classificationCode", "recipient", "subject", "letterDate", "content", "signerName", "status"]
+    },
+    "Member": {
+      "title": "Member",
+      "description": "Database anggota himpunan",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "nim": { "type": "string" },
+        "name": { "type": "string" },
+        "batch": { "type": "string" },
+        "division": { "type": "string" },
+        "status": { "type": "string", "enum": ["Aktif", "Alumni", "Cuti"] },
+        "phone": { "type": "string" },
+        "email": { "type": "string" }
+      },
+      "required": ["nim", "name", "batch", "division", "status"]
+    },
+    "Officer": {
+      "title": "Officer",
+      "description": "Data pejabat dan struktur pengurus",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "name": { "type": "string" },
+        "roleTitle": { "type": "string" },
+        "division": { "type": "string" },
+        "level": { "type": "number" },
+        "avatar": { "type": "string" }
+      },
+      "required": ["name", "roleTitle", "division", "level"]
+    },
+    "FilmWork": {
+      "title": "FilmWork",
+      "description": "Katalog karya film",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "title": { "type": "string" },
+        "director": { "type": "string" },
+        "producer": { "type": "string" },
+        "dop": { "type": "string" },
+        "productionHouse": { "type": "string" },
+        "year": { "type": "number" },
+        "duration": { "type": "string" },
+        "genre": { "type": "string" },
+        "synopsis": { "type": "string" },
+        "embedUrl": { "type": "string" },
+        "thumbnailUrl": { "type": "string" },
+        "featured": { "type": "boolean" },
+        "festivalAwards": { "type": "array", "items": { "type": "string" } }
+      },
+      "required": ["title", "director", "year", "duration", "genre", "synopsis", "thumbnailUrl"]
+    },
+    "NewsArticle": {
+      "title": "NewsArticle",
+      "description": "Warta dan rilis berita kegiatan",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "title": { "type": "string" },
+        "category": { "type": "string" },
+        "author": { "type": "string" },
+        "publishDate": { "type": "string" },
+        "summary": { "type": "string" },
+        "content": { "type": "string" },
+        "thumbnailUrl": { "type": "string" },
+        "readTime": { "type": "string" }
+      },
+      "required": ["title", "category", "author", "publishDate", "summary", "content", "thumbnailUrl"]
+    }
+  },
+  "firestore": {
+    "/finances/{financeId}": {
+      "schema": "FinanceTransaction",
+      "description": "Transaksi kas dan keuangan organisasi"
+    },
+    "/letters/{letterId}": {
+      "schema": "Letter",
+      "description": "Arsip surat keluar organisasi"
+    },
+    "/members/{memberId}": {
+      "schema": "Member",
+      "description": "Buku induk data anggota"
+    },
+    "/officers/{officerId}": {
+      "schema": "Officer",
+      "description": "Daftar susunan pengurus kabinet"
+    },
+    "/works/{workId}": {
+      "schema": "FilmWork",
+      "description": "Daftar film etalase dan CMS"
+    },
+    "/news/{newsId}": {
+      "schema": "NewsArticle",
+      "description": "Daftar berita publik dan CMS"
+    }
+  }
+}
